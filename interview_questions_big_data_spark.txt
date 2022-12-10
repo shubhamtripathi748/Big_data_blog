@@ -1,0 +1,70 @@
+1.Word Count Program Using PySpark ?
+
+spark=SparkSession.builder.master("local").appName("wordCount").getOrCreate()
+sc=spark.sparkContext text_file=sc.textFile("abc.txt")
+counts=textfile.flatMap(lamda line:line.split(" ")).map(lamda word:(word,1)).reduceByKey(lamda x,y:x+y)
+output = counts.collect()
+for (word, count) in output:
+    print("%s: %i" % (word, count))
+
+
+---------------------------------------------------------------------------------------------
+2.Determine if a string is a permutation of another string
+
+'Nib', 'bin' -> False
+'act', 'cat' -> True
+'a ct', 'ca t' -> True
+'Abhishek', 'bhAishek' ->True
+
+
+def arePermutation(str1,str2):
+    n1=len(str1)
+	n2=len(str2)
+    if (n1 != n2):
+		return False
+
+    a=sorted(str1)
+    str1=" ".join(a)
+
+	b=sorted(str2)
+    str2=" ".join(b)
+
+    #compare
+
+	for i in range(0,n2,1):
+	    if(str1[i] != str2[i]):
+		return False
+
+	return True
+------------------------------------------------------------------
+3.advantage of immutable ?
+
+Immutable data is definitely safe to share across processes. Immutable data can as easily live in memory as on disk.
+and Immutable allow to makes recreating the RDD parts possible at any given instance
+------------------------------------------------------------------------
+4. Logical plan for logical below two query ?
+
+a.spark.sql("select count(*) from table_name").show()
+b.spark.sql("select * from titanic_csv").show()
+Answer: count(*) will require Exchange of data between the Executors.
+-----------------------------------------------------------------------
+5.what is garbage collector name in spark and how to tune it ?
+
+Answer: the Garbage-First GC (G1 GC). the G1 collector aims to achieve both high
+throughput and low latency. Try the G1GC garbage collector with -XX:+UseG1GC
+
+---------------------------------------------------------------------------
+
+6.what is managed and external table in hive ?
+
+Answer: Managed tables are Hive tables where the entire lifecycle of the tables data are managed
+and controlled by Hive.
+External tables are tables where Hive has loose coupling with the data.
+
+
+
+
+
+
+
+
