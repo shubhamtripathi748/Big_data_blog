@@ -1,7 +1,8 @@
 1.Word Count Program Using PySpark ?
 
 spark=SparkSession.builder.master("local").appName("wordCount").getOrCreate()
-sc=spark.sparkContext text_file=sc.textFile("abc.txt")
+sc=spark.sparkContext
+text_file=sc.textFile("abc.txt")
 counts=textfile.flatMap(lamda line:line.split(" ")).map(lamda word:(word,1)).reduceByKey(lamda x,y:x+y)
 output = counts.collect()
 for (word, count) in output:
@@ -60,6 +61,124 @@ throughput and low latency. Try the G1GC garbage collector with -XX:+UseG1GC
 Answer: Managed tables are Hive tables where the entire lifecycle of the tables data are managed
 and controlled by Hive.
 External tables are tables where Hive has loose coupling with the data.
+
+-----------------------------------------------------------------------------
+paypal
+
+python
+1.difference  between list and tuple
+
+The primary difference between tuples and lists is that tuples are immutable as opposed to
+ lists which are mutable.
+
+2.how to connect db with python code.
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host = "localhost",
+    user = "yourusername",0
+    password = "your_password"
+)
+cursor = mydb.cursor()
+cursor.execute("CREATE DATABASE geeksforgeeks")
+
+
+
+3.how to merge to different dictionary data in python
+merged_dict = dict_one | dict_two | dict_three
+
+
+4.few values were assigned to a variable list a, after assinging it to another and appenindg few values into it,what will be the final o/p
+
+sql===
+two tables of employee having employee id as column and coupon code as
+column.need to assign each employee code them and how to use row_number()
+
+
+
+---------------------
+digit88
+
+1.Performance issue in the spark application and how you can improve it.
+2.salting in spark
+  In Spark, SALT is a technique that adds random values to push Spark partition data evenly
+
+3.Increase or decrease spark partitions dynamically
+
+4.DAG AND LINEAGE GRAPH
+
+5.ipl database table design
+ player
+ Team
+ session
+ ball_by_ball
+ match
+
+-------------------------------------------
+citi
+
+1.how many difference database connection is going to create for n different and n partitions executor ?
+  As per  shashank only 1 db connection only
+  numPartitions
+  The maximum number of partitions that can be used for parallelism in table reading and writing.
+  This also determines the maximum number of concurrent JDBC connections.
+  If the number of partitions to write exceeds this limit,
+  we decrease it to this limit by calling coalesce(numPartitions) before writing.
+
+2.how the broadcast is working and who require the memory ?
+  Broadcast variables do occupy memory on all executors.
+  Broadcast variables allow the programmer to keep a
+  read-only variable cached on each machine rather than shipping a copy of it with tasks
+  The data broadcasted this way is cached in serialized form and deserialized before running each task
+
+3.case class in scala ?
+  Scala case classes are just regular classes which are immutable by default and
+  decomposable through pattern matching.
+  It uses equal method to compare instance structurally. It does not use new keyword to instantiate object.
+  All the parameters listed in the case class are public and immutable by default
+  case class className(parameters)
+
+4.difference between RDD & DATAFRAME & DATASET.
+
+
+5.how you can identify the skew data.
+  Usually, in Apache Spark,
+  data skewness is caused by transformations that change data partitioning like join, groupBy, and orderBy.
+  For example, joining on a key that is not evenly distributed across the cluster,
+  causing some partitions to be very large and not allowing Spark to process data in parallel
+
+6.define your own schema in spark-->
+  Avro is an open source project that provides data serialization and
+  data exchange services for Apache Hadoop
+  use json , or structType struct field
+
+7.What is the concept of application, job, stage and task in spark?
+   When you invoke an action on an RDD, a "job" is created. Jobs are work submitted to Spark.
+   Jobs are divided into "stages" based on the shuffle boundary. This can help you understand.
+   Each stage is further divided into tasks based on the number of partitions in the RDD.
+   So tasks are the smallest units of work for Spark.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
