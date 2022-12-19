@@ -17,30 +17,48 @@ for (word, count) in output:
 'a ct', 'ca t' -> True
 'Abhishek', 'bhAishek' ->True
 
+def anagrams(inp1, inp2):
+    if len(inp1) != len(inp2):
+        return False
 
-def arePermutation(str1,str2):
-    n1=len(str1)
-	n2=len(str2)
-    if (n1 != n2):
-		return False
+    counts = {}
+    for c1,c2 in zip(inp1,inp2):
+             if c1 in counts.keys():
+                 counts[c1]+=1
+             else:
+                 counts[c1]=1
+             if c2 in counts.keys():
+                 counts[c2] -= 1
+             else:
+                 counts[c2] = -1
 
-    a=sorted(str1)
-    str1=" ".join(a)
 
-	b=sorted(str2)
-    str2=" ".join(b)
 
-    #compare
+    for count in counts.values():
+             if count!=0:
+                 return False
 
-	for i in range(0,n2,1):
-	    if(str1[i] != str2[i]):
-		return False
 
-	return True
+    return True
+
+
+def main():
+    inp1 = "silents"
+    inp2 = "listens"
+    if anagrams(inp1,inp2):
+        print("equal")
+    else:
+        print("not equal")
+
+
+
+if  __name__ =="__main__":
+    main()
 ------------------------------------------------------------------
 3.advantage of immutable ?
 
-Immutable data is definitely safe to share across processes. Immutable data can as easily live in memory as on disk.
+Immutable data is definitely safe to share across processes.
+Immutable data can as easily live in memory as on disk.
 and Immutable allow to makes recreating the RDD parts possible at any given instance
 ------------------------------------------------------------------------
 4. Logical plan for logical below two query ?
