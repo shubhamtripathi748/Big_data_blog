@@ -176,7 +176,28 @@ citi
    Jobs are divided into "stages" based on the shuffle boundary. This can help you understand.
    Each stage is further divided into tasks based on the number of partitions in the RDD.
    So tasks are the smallest units of work for Spark.
+----------------------------------
+Deloitte
+1.How you can delete duplicate record
+  We use a SQL ROW_NUMBER function, and it adds a unique sequential row number for the row.
 
+In the following CTE, it partitions the data using the PARTITION BY clause for the
+[Firstname], [Lastname] and [Country] column and generates a row number for each row.
+
+WITH CTE([FirstName],
+    [LastName],
+    [Country],
+    DuplicateCount)
+AS (SELECT [FirstName],
+           [LastName],
+           [Country],
+           ROW_NUMBER() OVER(PARTITION BY [FirstName],
+                                          [LastName],
+                                          [Country]
+           ORDER BY ID) AS DuplicateCount
+    FROM [SampleDB].[dbo].[Employee])
+DELETE FROM CTE
+WHERE DuplicateCount > 1;
 
 
 
