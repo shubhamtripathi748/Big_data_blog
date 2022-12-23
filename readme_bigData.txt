@@ -198,6 +198,81 @@ AS (SELECT [FirstName],
     FROM [SampleDB].[dbo].[Employee])
 DELETE FROM CTE
 WHERE DuplicateCount > 1;
+----------------------------------------------
+digit88
+
+id date  amount
+A 2022-11-30 2000
+A 2011-11-22 5000
+A 2022-11-28 1000000
+---------------------------
+A  2022-10-28 1000000
+A 2022-10-28 1000000
+A 2022- 10 28 400000
+-------------------------
+A 2022-10-27 50000
+A 2022-10-29 400000
+A 2022-11-27 400000
+------------------------------
+
+for date of 28th every month ,
+i want to cmpare the difference of transcation
+from previous date to 28th
+and
+from 28th to 29th
+and flafg it as an anomoly if the percentage change is higher than 50
+
+use window function
+------------------------------
+what is lead and lag functions in sql
+lag-->to get the previous record
+lead-->to get the next record 
+----------------------------------
+happiestminds
+
+1.how to call udf function in dataframe
+  val random =udf(()=>Math.random())
+  spark.udf.register("random",random.asNondetermistic());
+  df.withColumn("rand",random())
+
+2.how you can find city wise population max
+
+df==>city,pupulation,year
+rdd.map(lamda reg:(reg[0],reg[1])).reduceByKey(lamda v1,v2:(v1 if v1[1]>=v2[1] else v2))
+df.groupBy('city').max(population).show()
+
+3.how you can change the datatype of the column
+df===>salary
+df.withColumn("salary",col("salary").cast("IntegerType"))
+
+4.lead function example
+
+select orderQ ,LEAD(orderQ) OVER(ORDER BY orderQ) DESC FROM SALES.ORDERDETAIL
+
+5.monthly salary of the employee.
+SELECT EMP_name,(emp_An_salry/12)as 'monthly_salary',emp_An_salry as 'anual salary' from emp_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
