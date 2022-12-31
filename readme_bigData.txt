@@ -252,6 +252,24 @@ select orderQ ,LEAD(orderQ) OVER(ORDER BY orderQ) DESC FROM SALES.ORDERDETAIL
 5.monthly salary of the employee.
 SELECT EMP_name,(emp_An_salry/12)as 'monthly_salary',emp_An_salry as 'anual salary' from emp_data
 
+------------------------------------------------------------------
+1.remove the duplicate
+
+def remove(duplicate):
+    final_list = []
+    for num in duplicate:
+        if num not in final_list:
+            final_list.append(num)
+
+    return final_list
+
+2.5th higest salary
+  val byDeptOrderByDesc=Window.partitionBy(col("department")).orderBy(col("department"),desc)
+    df.withColumn("col5",dense_rank() over byDeptOrderByDesc).filter("col5=5")
+
+3.join two large table then how you can optimize ?
+   instead of default shuffle join you can use Sort-merge Join -->Mappers take advantage of co-location of keys
+   to do efficient join.
 
 
 
