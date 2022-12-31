@@ -271,6 +271,11 @@ def remove(duplicate):
    instead of default shuffle join you can use Sort-merge Join -->Mappers take advantage of co-location of keys
    to do efficient join.
 
+4.List Comprehension
+    fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+    newlist = [x for x in fruits if "a" in x]
+-----------------------
+
 
 
 
