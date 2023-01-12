@@ -61,7 +61,7 @@ Immutable data is definitely safe to share across processes.
 Immutable data can as easily live in memory as on disk.
 and Immutable allow to makes recreating the RDD parts possible at any given instance
 ------------------------------------------------------------------------
-4. Logical plan for logical below two query ?
+4. Logical plan for  below two query ?
 
 a.spark.sql("select count(*) from table_name").show()
 b.spark.sql("select * from titanic_csv").show()
@@ -275,6 +275,37 @@ def remove(duplicate):
     fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
     newlist = [x for x in fruits if "a" in x]
 -----------------------
+
+Identify the max transaction amount done every month per customer without dropping any existing column.
+
+
+After Identifying the max transaction amount done every month derive a column(prev_transaction)
+that shows the previous month transaction for a cutomer  with current month.
+
+
+---------------------------------------------------------------------------------------
+
+
+id    dpt_id    salary
+-------------------
+1    hr        1000
+2    fin        1400
+3    hr        1800
+4    fin        500
+5    adm        3000
+===================
+Write a query to get salary payout from a dept more than 2,000.
+select dept_id,sum(salary) from employee_department group by dept_id  having sum(salary)>2000
+==============================
+scope in build tool
+provided and compile
+you can use provided scope to remove the dependency in prod for e.g test-cases
+
+
+
+
+
+
 
 
 
