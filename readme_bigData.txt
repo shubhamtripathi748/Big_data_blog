@@ -299,7 +299,35 @@ select dept_id,sum(salary) from employee_department group by dept_id  having sum
 ==============================
 scope in build tool
 provided and compile
-you can use provided scope to remove the dependency in prod for e.g test-cases
+you can use provided scope to remove the dependency in prod for e.g test-
+--------------------------------------------------
+vowel count
+
+#regex import
+import re
+df.flatMap()
+mapOp=df.flatMap(lambda x:x.split(" ")).map(lamda l:(l,len(re.findall('[aeiou]',1)))).collect()
+[('vikram',2),('is',1),('best',1),('umbrella',3)]
+
+TABLE T1 MINUS TABLE T2==>left_semi
+select * from (
+select distinct(t1.somevalue)
+from table t1,t2
+where t1.c1=t2.c1
+)x
+LEFT JOIN
+(
+select distinct(t1.somevalue)
+from table t1,t2
+where t1.c1=t2.c1
+)y
+on x.somevalue=y.somevalue
+where y.somevalue is null
+--------------------------------------------------
+
+
+
+--------------------------------------------------
 
 
 
