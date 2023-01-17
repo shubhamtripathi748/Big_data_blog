@@ -324,7 +324,46 @@ where t1.c1=t2.c1
 on x.somevalue=y.somevalue
 where y.somevalue is null
 --------------------------------------------------
+JIO
+Plus One
+Input: digits = [4,3,2,1]
+Output: [4,3,2,2]
+Explanation: The array represents the integer 4321.
+Incrementing by one gives 4321 + 1 = 4322.
+Thus, the result should be [4,3,2,2].
+def plus_one(digits):
+    n = len(digits)
 
+    while n > 0:
+        if digits[n - 1] == 9:
+            if (n - 1) == 0:
+                digits[n - 1] = 0
+                temp = [1] + digits
+                return temp
+            else:
+                digits[n - 1] = 0
+                n = n - 1
+        else:
+            digits[n - 1] += 1
+            return digits
+
+    return digits
+
+
+
+Problem 1 :
+List down all the duplicates character in the string
+
+from collections import Counter
+def find_dup_char(input):
+        WC = Counter(input)
+
+        for letter, count in WC.items():
+            if (count > 1):
+                print(letter,count)
+
+if  __name__ =="__main__":
+   find_dup_char("This is the reliance industries, we welcome you")
 
 
 --------------------------------------------------
